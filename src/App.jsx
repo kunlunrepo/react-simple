@@ -1,33 +1,28 @@
 import './App.css'
 // 类组件
-import React from "react";
+import React, {useState} from "react";
 
 
-class App extends React.Component {
+const App = () => {
 
-    state={
-        counte: 0,
-        title: 'react'
+    const [counte,setCounte] = useState(0);
+    const [title,setTitle] = useState('react');
+    console.log(counte, setCounte)
+
+    const add = ()=> {
+        setCounte(counte + 1)
     }
 
-    add = ()=> {
-        this.setState({counte: this.state.counte + 1})
+    const changName = ()=> {
+        setTitle('vue')
     }
 
-    changName = ()=> {
-        this.setState({title: 'vue'})
-    }
-
-    render() {
-        return (
-            <>
-                <h1>{this.state.title}</h1>
-                <div>当前的计数：{this.state.counte}</div>
-                <button onClick={this.add} >增加</button>
-                <button onClick={this.changName} >更改title</button>
-            </>
-        )
-    }
+    return <div>
+        <h1>{title}</h1>
+        <div>当前的计数：{counte}</div>
+        <button onClick={add} >增加</button>
+        <button onClick={changName} >更改title</button>
+    </div>
 }
 
 export default App
