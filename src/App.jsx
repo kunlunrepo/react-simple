@@ -6,19 +6,13 @@ import React from "react";
 
 class App extends React.Component {
 
-    constructor(props) {
-        // 固定写法
-        super(props);
-        // 状态值
-        // this.state = {
-        //     isWash: false
-        // }
-        // 绑定this
-        // this.handlerClick = this.handlerClick.bind(this)
-    }
-
-    state = {
-        isWash: false
+    /**
+     * 弹窗方法
+     */
+    popClick = () => {
+        // console.log(document.getElementsByTagName('input')[0].value);
+        const { inputRef} = this.refs;
+        console.log(inputRef.value)
     }
 
     /**
@@ -27,23 +21,10 @@ class App extends React.Component {
     render() {
         return (
             <>
-                <div onClick={this.handlerClick}>
-                    老王今天{this.state.isWash ? "去" : "没去"}洗脚了
-                </div>
+                <input type="text" placeholder="请输入内容" ref="inputRef"/>
+                <button onClick={this.popClick}>点击生成弹窗</button>
             </>
         )
-    }
-
-    /**
-     * 点击方法 不使用箭头函数的话需要绑定this
-     */
-    handlerClick = () => {
-        // console.log("点击了");
-        console.log(this)
-        // 改变状态值
-        this.setState({
-            isWash: !this.state.isWash
-        })
     }
 }
 
