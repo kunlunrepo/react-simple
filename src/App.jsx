@@ -10,18 +10,21 @@ class App extends React.Component {
         // 固定写法
         super(props);
         // 状态值
-        this.state = {
-            isWash: false
-        }
+        // this.state = {
+        //     isWash: false
+        // }
         // 绑定this
-        this.handlerClick = this.handlerClick.bind(this)
+        // this.handlerClick = this.handlerClick.bind(this)
+    }
+
+    state = {
+        isWash: false
     }
 
     /**
      * 渲染
      */
     render() {
-        console.log(this)
         return (
             <>
                 <div onClick={this.handlerClick}>
@@ -34,8 +37,9 @@ class App extends React.Component {
     /**
      * 点击方法 不使用箭头函数的话需要绑定this
      */
-    handlerClick () {
+    handlerClick = () => {
         // console.log("点击了");
+        console.log(this)
         // 改变状态值
         this.setState({
             isWash: !this.state.isWash
