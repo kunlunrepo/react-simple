@@ -1,32 +1,21 @@
-import './App.css'
-// 类组件
-import React, {useState} from "react";
-
+import React, { useState } from "react";
 
 const App = () => {
+    const [message, setMessage] = useState({
+        name: "旧课程",
+        website: "www.baidu.com",
+    });
 
-    const [counte,setCounte] = useState(0);
-    const [title,setTitle] = useState('react');
-    console.log(counte, setCounte)
+    const changeName = () => {
+        setMessage({ ...message, name: "新课程" });
+    };
 
-    const add = ()=> {
-        setCounte((count) => {
-            count++;
-            console.log("更新的值",count)
-            return count
-        })
-    }
-
-    const changName = ()=> {
-        setTitle('vue')
-    }
-
-    return <div>
-        <h1>{title}</h1>
-        <div>当前的计数：{counte}</div>
-        <button onClick={add} >增加</button>
-        <button onClick={changName} >更改title</button>
-    </div>
-}
-
-export default App
+    return (
+        <div>
+            <h1>{message.name}</h1>
+            <h1>{message.website}</h1>
+            <button onClick={changeName}>更改title</button>
+        </div>
+    );
+};
+export default App;
