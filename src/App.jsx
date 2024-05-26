@@ -1,36 +1,45 @@
 import './App.css'
 
-// 函数组件
-/*function App(props) {
-    return (
-        <>
-            <div>小滴课堂{props.text}课程</div>
-        </>
-    )
-}*/
-
 
 // 类组件
 import React from "react";
 
-class Children extends React.Component {
+class App extends React.Component {
+
+    constructor(props) {
+        // 固定写法
+        super(props);
+        // 状态值
+        this.state = {
+            isWash: false
+        }
+        // 绑定this
+        this.handlerClick = this.handlerClick.bind(this)
+    }
+
+    /**
+     * 渲染
+     */
     render() {
+        console.log(this)
         return (
             <>
-                <div>正在学习的课程</div>
+                <div onClick={this.handlerClick}>
+                    老王今天{this.state.isWash ? "去" : "没去"}洗脚了
+                </div>
             </>
         )
     }
-}
 
-class App extends React.Component {
-    render() {
-        return (
-            <>
-                <div>小滴课堂{this.props.text}课程</div>
-                <Children/>
-            </>
-        )
+    /**
+     * 点击方法 不使用箭头函数的话需要绑定this
+     */
+    handlerClick () {
+        // console.log("点击了");
+        // 改变状态值
+        this.setState({
+            isWash: !this.state.isWash
+        })
     }
 }
 
