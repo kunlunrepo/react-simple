@@ -1,34 +1,30 @@
 import './App.css'
-
-// 函数组件
-/*function App(props) {
-    return (
-        <>
-            <div>小滴课堂{props.text}课程</div>
-        </>
-    )
-}*/
-
-
 // 类组件
 import React from "react";
 
-class Children extends React.Component {
-    render() {
-        return (
-            <>
-                <div>正在学习的课程</div>
-            </>
-        )
-    }
-}
 
 class App extends React.Component {
+
+    state={
+        counte: 0,
+        title: 'react'
+    }
+
+    add = ()=> {
+        this.setState({counte: this.state.counte + 1})
+    }
+
+    changName = ()=> {
+        this.setState({title: 'vue'})
+    }
+
     render() {
         return (
             <>
-                <div>小滴课堂{this.props.text}课程</div>
-                <Children/>
+                <h1>{this.state.title}</h1>
+                <div>当前的计数：{this.state.counte}</div>
+                <button onClick={this.add} >增加</button>
+                <button onClick={this.changName} >更改title</button>
             </>
         )
     }
