@@ -15,7 +15,10 @@ class Home extends React.Component {
                 首页的页面
                 <div style={{display: "flex", justifyContent: "center", margin: "20px"}}>
                     <div className="link">
-                        <NavLink to={`classify?xd=${this.state.name}&website=${this.state.website}`} className={this.activeStyle}>打开分类的页面</NavLink>
+                        <NavLink
+                            to={`classify`}
+                            state={{xd: this.state.name, website: this.state.website}}
+                            className={this.activeStyle}>打开分类的页面</NavLink>
                     </div>
                     <div className="link">
                         <NavLink to="navigation" className={this.activeStyle}>打开导航的页面</NavLink>
