@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReactBase</title>
+</head>
+
+<style>
+    .title {
+        color: red;
+    }
+</style>
+
+<body>
+    <div id="root"></div>
+    <!-- 引入react的核心库 -->
+    <script crossorigin src="https://unpkg.com/react@18.2/umd/react.development.js"></script>
+    <!-- 引入react-dom用于支持react操作dom -->
+    <script crossorigin src="https://unpkg.com/react-dom@18.2/umd/react-dom.development.js"></script>
+    <!-- 引入babel转换jsx为js -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 初始化 -->
+    <!-- <script>
+      // 1.创建虚拟dom
+      const vdom = React.createElement("div", {}, "hello react")
+      // 2.找到容器，将虚拟dom渲染到页面中
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(vdom);
+    </script> -->
+    
+    <!-- 虚拟DOM和真实DOM -->
+    <!-- <script type="text/babel">
+        // 1.创建虚拟dom
+        const vdom = <div>hello react</div>;
+        console.log("虚拟DOM", vdom);
+        const TDOM =document.getElementById("root");
+        console.log("真实DOM",TDOM);
+        // 2.找到容器，将虚拟dom渲染到页面中
+        ReactDOM.render(vdom,document.getElementById("root"));
+      </script> -->
+
+      <!-- 多元素嵌套 -->
+    <!-- <script type="text/babel">
+        // 1.创建虚拟dom
+        const xd = "xdclass";
+        const text = "小滴课堂";
+        const vdom = (
+            <>
+                <div>
+                    <h1 className="title" style={{fontSize: '50px'}}>{text}</h1>
+                </div>
+            </>
+        )
+        // 2.找到容器，将虚拟dom渲染到页面中
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(vdom);
+    </script> -->
+
+    <!-- 数据渲染 -->
+    <script type="text/babel">
+        const personList = ["老王", "冰冰", "anna", "小D", "大钊"];
+
+        // 1.创建虚拟dom
+        const vdom = (
+            <>
+                <h1>人员列表</h1>
+                <ul>
+                    {
+                        personList.map((i, index) => {
+                            return <li key={index}>{i}</li>;
+                        })
+                    }
+                </ul>
+            </>
+        );
+        // 2.找到容器，将虚拟dom渲染到页面中
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(vdom);
+    </script>
+</body>
+
+</html>
