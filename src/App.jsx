@@ -3,44 +3,30 @@ import './App.css'
 
 // 类组件
 import React from "react";
+import {Link, Route, Routes, BrowserRouter as Router} from "react-router-dom";
+import Home from "./components/Home/index.jsx";
+import About from "./components/About/index.jsx";
 
 class App extends React.Component {
-
-    state = {
-        value: '张三'
-    }
-
-    handleSubmit = () => {
-        alert(this.name.value);
-    };
-
-    handleChange = (e) => {
-        alert(e.target.value)
-        this.setState({value: e.target.value})
-    };
    render() {
        return (
-           /* 非受控组件 */
-           <form onSubmit={this.handleSubmit}>
-               <label>
-                   名字：
-                   <input type="text" ref={(a) => (this.name = a)}/>
-               </label>
-               <button type="submit">提交</button>
-           </form>
+           <div className="all">
+               <div>
+                   <div className="link">
+                       <Link to="/home">打开首页的页面</Link>
+                   </div>
+                   <div className="link">
+                       <Link to="/about">打开关于的页面</Link>
+                   </div>
+               </div>
+               <div className="view">
+                   <Routes>
+                       <Route path='/home' element={<Home />}></Route>
+                       <Route path='/about' element={<About />}></Route>
+                   </Routes>
+               </div>
+           </div>
        )
-       /*return (
-           /!* 受控组件 *!/
-           <form onSubmit={this.handleSubmit}>
-               <label>
-                   名字：
-                   <input type="text"
-                          value={this.state.value}
-                          onChange={this.handleChange}/>
-               </label>
-               <button type="submit">提交</button>
-           </form>
-       )*/
    }
 }
 
