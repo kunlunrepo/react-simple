@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import {useImmer} from  "use-immer"
 
 const App = () => {
-    const [message, setMessage] = useState({
+    const [message, setMessage] = useImmer({
         name: "旧课程",
         website: "www.baidu.com",
         staff: {
@@ -11,11 +11,18 @@ const App = () => {
     });
 
     const changeName = () => {
-        setMessage({ ...message, name: "新课程" }); // 展开运算符相当于浅拷贝
+        // setMessage({ ...message, name: "新课程" }); // 展开运算符相当于浅拷贝
+
+        setMessage((draft) => {
+            draft.name = "新课程";
+        });
     };
 
     const changeHobby = () => {
-        setMessage({ ...message, staff: { ...message.staff, hobby: "洗脚" } }); // 复杂对象需要多次展开
+        // setMessage({ ...message, staff: { ...message.staff, hobby: "洗脚" } }); // 复杂对象需要多次展开
+        setMessage((draft) => {
+            draft.staff.hobby = "洗脚";
+        });
     };
 
     return (
