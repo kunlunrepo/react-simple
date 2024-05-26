@@ -1,37 +1,24 @@
-import './App.css'
+import { useSelector, useDispatch } from "react-redux";
+import { decrement, increment } from "./store/modules/counterSlice";
+import Test from './components/Test'
 
-// 函数组件
-/*function App(props) {
+export default function Person() {
+    // 拿到store里的数据/状态
+    const { value, list } = useSelector((state) => {
+        console.log(state.counter)
+        return state.counter
+    });
+    // 调用counterSlice里调用的方法
+    const dispatch = useDispatch();
+
     return (
-        <>
-            <div>小滴课堂{props.text}课程</div>
-        </>
-    )
-}*/
-
-
-// 类组件
-import React from "react";
-
-class Children extends React.Component {
-    render() {
-        return (
-            <>
-                <div>正在学习的课程</div>
-            </>
-        )
-    }
+        <div>
+            <h2>Person -- {value}</h2>
+            <h2>list -- {list.length}</h2>
+            <button onClick={() => dispatch(increment())}>增加</button>
+            <button onClick={() => dispatch(decrement())}>减少</button>
+            <hr/>
+            <Test/>
+        </div>
+    );
 }
-
-class App extends React.Component {
-    render() {
-        return (
-            <>
-                <div>小滴课堂{this.props.text}课程</div>
-                <Children/>
-            </>
-        )
-    }
-}
-
-export default App
