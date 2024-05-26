@@ -10,7 +10,11 @@ const App = () => {
     console.log(counte, setCounte)
 
     const add = ()=> {
-        setCounte(counte + 1)
+        setCounte((count) => {
+            count++;
+            console.log("更新的值",count)
+            return count
+        })
     }
 
     const changName = ()=> {
