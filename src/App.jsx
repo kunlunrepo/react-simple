@@ -1,50 +1,49 @@
-import {useState} from "react";
-import { useImmer } from "use-immer";
-const App = () => {
-    const [name, setName] = useState("");
-    // 数组
-    const [person, setPerson] = useImmer([{id: 0, name: "老王", checked: false}]);
+import React, { useEffect, useState } from "react";
+import { root } from "./main";
 
-    const handleDelete = (item) => {
-        setPerson(person.filter((person) => person.id !== item.id));
+const App = () => {
+    const [counte, setCounte] = useState(0);
+    const [name, setName] = useState("课程");
+    // 增加
+    const add = () => {
+        setCounte((counte) => counte + 1);
     };
 
-    const handleCheck = (item, checked) => {
-        setPerson((draft) => {
-            console.log(draft)
-            const checkedItem = draft.find((person) => person.id === item);
-            console.log(checkedItem)
-            checkedItem.checked = checked;
-        })
-        console.log(person)
-    }
+    // 改变
+    const change = () => {
+        setName("www.baidu.com");
+    };
+
+    // 卸载组件
+    const handelDelete = () => {
+        root.unmount();
+    };
+
+    // 检测到counte变量变化就输出 "组件更新了"
+    // useEffect(() => {
+    //     console.log("组件更新了")
+    // }, [counte])
+
+
+    useEffect(() => {
+        console.log("组件挂载了")
+        let timer = setInterval(() => {
+            setCounte((counte) => counte + 1);
+        }, 1000);
+        return () => {
+            clearInterval(timer);
+            console.log("组件卸载了");
+        };
+    }, []); // []什么都不监控
 
     return (
-        <>
-            <h1>员工列表：</h1>
-            <input value={name} onChange={(e) => setName(e.target.value)}/>
-            <button
-                onClick={() => {
-                    setPerson([...person, {id: person.length, name: name, checked: false}]);
-                }}
-            >
-                添加
-            </button>
-            <ul>
-                {
-                    person.map((item) => (
-                        <li key={item.id}>
-                            <label>
-                                <input type="checkbox" checked={item.checked}
-                                       onChange={(e) => handleCheck(item.id, e.target.checked)}/>
-                            </label>
-                            {item.name}
-                            <button onClick={() => handleDelete(item)}>删除</button>
-                        </li>
-                    ))
-                }
-            </ul>
-        </>
+        <div>
+            <h1>当前的计数：{counte}</h1>
+            <button onClick={add}>增加</button>
+            <h1>{name}</h1>
+            <button onClick={change}>改变</button>
+            <button onClick={handelDelete}>卸载组件</button>
+        </div>
     );
 };
 
