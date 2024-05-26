@@ -8,6 +8,7 @@ const Classify = () => {
 
     return <div>
         分类的页面
+        <div>父组件传值{state.state.xd}</div>
     </div>
 }
 
