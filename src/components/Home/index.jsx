@@ -5,13 +5,14 @@ class Home extends React.Component {
     activeStyle = ({isActive}) => {
         return isActive ? "background" : "";
     }
+    state={name: "张三"}
     render() {
         return (
             <div>
                 首页的页面
                 <div style={{display: "flex", justifyContent: "center", margin: "20px"}}>
                     <div className="link">
-                        <NavLink to="classify" className={this.activeStyle}>打开分类的页面</NavLink>
+                        <NavLink to={`classify/${this.state.name}`} className={this.activeStyle}>打开分类的页面</NavLink>
                     </div>
                     <div className="link">
                         <NavLink to="navigation" className={this.activeStyle}>打开导航的页面</NavLink>

@@ -10,7 +10,7 @@ export default [
         element: <Home/>,
         children: [
             {
-                path: 'classify',
+                path: 'classify/:xd',
                 element: <Classify/>
             },
             {
