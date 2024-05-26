@@ -1,21 +1,25 @@
 import './App.css'
 
 
-// 类组件
-import React from "react";
-import {Link, useRoutes} from "react-router-dom";
+// 函数组件
+import {NavLink, useRoutes} from "react-router-dom";
 import routes from "./routes/index.jsx";
 
 const App = () => {
+    // 路由表
     const element = useRoutes(routes)
+    // 路由激活样式
+    const activeStyle = ({isActive}) => {
+        return isActive ? "background" : "";
+    }
     return (
         <div className="all">
             <div>
                 <div className="link">
-                    <Link to="/home">打开首页的页面</Link>
+                    <NavLink to="/home" className={activeStyle}>打开首页的页面</NavLink>
                 </div>
                 <div className="link">
-                    <Link to="/about">打开关于的页面</Link>
+                    <NavLink to="/about" className={activeStyle}>打开关于的页面</NavLink>
                 </div>
             </div>
             <div className="view">
