@@ -6,31 +6,42 @@ import React from "react";
 
 class App extends React.Component {
 
-    // 创建容器
-    inputRef = React.createRef();
-    inputRef2 = React.createRef(); // 不要过度使用ref
-
-    popClick = () => {
-        console.log(this)
-        console.log(this.inputRef.current.value)
-        console.log(this.inputRef2.current.value)
+    state = {
+        value: '张三'
     }
 
-    /**
-     * 渲染
-     */
-    render() {
-        return (
-            <>
-                {/*<input type="text" placeholder="请输入内容" ref={
-                    (e) => ((this.inputRef = e), console.log("ref执行了"))
-                }/>*/}
-                <input type="text" placeholder="请输入内容" ref={this.inputRef}/>
-                <input type="text" placeholder="请输入内容" ref={this.inputRef2}/>
-                <button onClick={this.popClick}>点击生成弹窗</button>
-            </>
-        )
-    }
+    handleSubmit = () => {
+        alert(this.name.value);
+    };
+
+    handleChange = (e) => {
+        alert(e.target.value)
+        this.setState({value: e.target.value})
+    };
+   render() {
+       return (
+           /* 非受控组件 */
+           <form onSubmit={this.handleSubmit}>
+               <label>
+                   名字：
+                   <input type="text" ref={(a) => (this.name = a)}/>
+               </label>
+               <button type="submit">提交</button>
+           </form>
+       )
+       /*return (
+           /!* 受控组件 *!/
+           <form onSubmit={this.handleSubmit}>
+               <label>
+                   名字：
+                   <input type="text"
+                          value={this.state.value}
+                          onChange={this.handleChange}/>
+               </label>
+               <button type="submit">提交</button>
+           </form>
+       )*/
+   }
 }
 
 export default App
