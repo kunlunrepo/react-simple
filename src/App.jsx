@@ -3,7 +3,7 @@ import './App.css'
 
 // 类组件
 import React from "react";
-import {Link, Route, Routes, BrowserRouter as Router} from "react-router-dom";
+import {Link, Route, Routes, BrowserRouter as Router, Navigate} from "react-router-dom";
 import Home from "./components/Home/index.jsx";
 import About from "./components/About/index.jsx";
 
@@ -23,6 +23,8 @@ class App extends React.Component {
                    <Routes>
                        <Route path='/home' element={<Home />}></Route>
                        <Route path='/about' element={<About />}></Route>
+                       {/*重定向*/}
+                       <Route path='/' element={<Navigate to='/home'/>}></Route>
                    </Routes>
                </div>
            </div>
